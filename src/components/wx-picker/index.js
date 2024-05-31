@@ -385,13 +385,15 @@ export default class WxPicker extends Base {
      * 隐藏 picker-view
      */
     hidePickerView() {
-        this._isPickerShow = false
-        const onTransitionEnd = () => {
-            document.body.removeChild(this.dialog)
-            this.dialog.removeEventListener('transitionend', onTransitionEnd)
+        if (this._isPickerShow && getComputedStyle(this.dialog).opacity === '1') {
+            this._isPickerShow = false
+            const onTransitionEnd = () => {
+                document.body.removeChild(this.dialog)
+                this.dialog.removeEventListener('transitionend', onTransitionEnd)
+            }
+            this.dialog.addEventListener('transitionend', onTransitionEnd)
+            this.dialog.classList.replace('wx-picker-dialog-in', 'wx-picker-dialog-out')
         }
-        this.dialog.addEventListener('transitionend', onTransitionEnd)
-        this.dialog.classList.replace('wx-picker-dialog-in', 'wx-picker-dialog-out')
     }
 
     /**

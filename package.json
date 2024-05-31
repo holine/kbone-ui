@@ -1,6 +1,6 @@
 {
     "name": "@holine/kbone-ui",
-    "version": "1.0.18",
+    "version": "1.0.22",
     "description": "Weui component Library for kbone-ui",
     "main": "index.js",
     "scripts": {
